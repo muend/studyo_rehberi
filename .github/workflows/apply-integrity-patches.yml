@@ -1,0 +1,31 @@
+name: Apply final integrity patches
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-integrity-patches.yml'
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/studyo-atlasi-yukseltme
+      - run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html'); s=p.read_text(encoding='utf-8')
+          css='  <link rel="stylesheet" href="assets/css/integrity-patches.css">\n'
+          js='  <script src="assets/js/integrity-patches.js"></script>\n'
+          if 'assets/css/integrity-patches.css' not in s: s=s.replace('</head>',css+'</head>')
+          if 'assets/js/integrity-patches.js' not in s: s=s.replace('</body>',js+'</body>')
+          p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "fix: activate source-safe exam and constraint content" || true
+          git rm .github/workflows/apply-integrity-patches.yml
+          git commit -m "chore: remove one-shot integrity workflow"
+          git push origin HEAD:codex/studyo-atlasi-yukseltme
