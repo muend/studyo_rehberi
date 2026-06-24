@@ -1,0 +1,37 @@
+name: Apply visual story assets
+on:
+  push:
+    paths:
+      - '.github/workflows/apply-visual-story.yml'
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/studyo-atlasi-yukseltme
+      - name: Add visual story assets to index
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          css='  <link rel="stylesheet" href="assets/css/visual-story.css">\n'
+          if 'assets/css/visual-story.css' not in s:
+              s=s.replace('</head>',css+'</head>')
+          scripts='  <script src="assets/js/visual-story.js"></script>\n  <script src="assets/js/image2-visuals.js"></script>\n'
+          if 'assets/js/visual-story.js' not in s:
+              s=s.replace('</body>',scripts+'</body>')
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit generated wiring
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "feat: activate Image 2.0 visual story and verified content" || true
+          git rm .github/workflows/apply-visual-story.yml
+          git commit -m "chore: remove one-shot visual story workflow"
+          git push origin HEAD:codex/studyo-atlasi-yukseltme
