@@ -12,3 +12,16 @@
 .focus-study .ticker-bar,.focus-study .atlas-hero,.focus-study .trust-strip,.focus-study .section-desc,.focus-study .group-label{display:none}.focus-study .main{max-width:980px}.focus-study .section-header{padding-top:20px}#gridToggleBtn{display:none!important}.toast{position:fixed;right:18px;bottom:18px;z-index:15000;background:var(--text);color:#fff;padding:10px 14px;font:600 10px var(--font-mono);box-shadow:var(--shadow);animation:fadeUp .18s ease}
 @media(max-width:900px){.atlas-hero{min-height:310px}.atlas-copy{padding:38px 22px}.trust-strip{grid-template-columns:1fr 1fr}.trust-item:nth-child(2){border-right:0}.study-toolbar{top:132px;overflow-x:auto}.study-progress{display:none}.tool-btn{min-height:50px}.lab-grid{grid-template-columns:1fr}.lab-controls{border-right:0;border-bottom:1px solid var(--border)}.glossary-grid{grid-template-columns:1fr}.source-assurance a{width:100%;margin-left:0}.topbar,.searchbar-wrap{padding-left:12px;padding-right:12px}.main{padding-left:14px;padding-right:14px}.searchbar-inner{overflow-x:auto}.filter-pills{min-width:max-content}}@media(max-width:560px){.atlas-title{font-size:34px}.atlas-caption{display:none}.trust-strip{grid-template-columns:1fr}.trust-item{border-right:0;border-bottom:1px solid var(--border)}.study-stat{min-width:108px}.tool-btn{padding:0 10px}.lab-results{grid-template-columns:1fr}.lab-result{border-right:0;border-bottom:1px solid var(--border)}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.ticker-track{animation:none!important}}@media print{.ticker-bar,.topbar,.searchbar-wrap,.atlas-hero,.trust-strip,.study-toolbar,.item-tools,.study-note,.scenario-lab,#gridToggleBtn{display:none!important}.main{max-width:none;padding:0}.acc-body{max-height:none!important}.acc-item{break-inside:avoid}}
+
+@media(max-width:900px){
+  .topbar{overflow:hidden}
+  .topbar-inner{width:100%;min-width:0}
+  .logo{width:100%;min-width:0;white-space:normal;padding-right:0;border-right:0}
+  .logo-sub{white-space:normal;overflow:hidden;text-overflow:ellipsis}
+  .tab-nav{width:100%;min-width:0;overflow-x:auto;overflow-y:hidden}
+  .tab-btn{flex:0 0 auto;min-width:150px}
+  .searchbar-wrap{overflow:hidden}
+  .searchbar-inner{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden}
+  .main{overflow-x:hidden}
+  .table-wrap{max-width:100%}
+}
