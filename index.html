@@ -1,9 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CP302 — Kapsamlı Öğrenme Rehberi</title>
+<title>CP302 — Kaş Planlama Stüdyosu Atlası</title>
+<meta name="description" content="Kaş ve Bayındır için mevzuat, kuram, analitik araçlar ve kişisel çalışma özelliklerini birleştiren interaktif CP302 stüdyo rehberi.">
+<meta name="theme-color" content="#1a1a1a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -795,6 +797,7 @@ body.hap-only .acc-content > :not(.card-law):not(.hap-wrap) { display: none; }
   .sinav-hap-ref { background: #1a1a1a !important; }
 }
 </style>
+<link rel="stylesheet" href="assets/css/enhancements.css">
 </head>
 <body>
 
@@ -3202,14 +3205,14 @@ function addAnalitikExtras() {
   var takContent = document.getElementById('takvim-content');
   if (takContent) {
     var milestones = [
-      { tarih:'24 \u015eub 2025', tip:'Ba\u015flang\u0131\u00e7', label:'Ders Ba\u015flang\u0131c\u0131', detay:'Grup olu\u015fturma. Ara\u015ft\u0131rma Raporu ve 1/5000 Stratejik Plan ba\u015flat\u0131ld\u0131.', yasalar:'3194, 6360, 5216', renk:'var(--blue)' },
-      { tarih:'24 Mar 2025', tip:'MID JURY 1', label:'1/5000 Stratejik Plan', detay:'Stratejik planlar paydalar ile sunulur. SWOT analizi, vizyon, arazi kullan\u0131m kararlar\u0131.', yasalar:'3194/m.8 \u00b7 5216/m.7 \u00b7 Mek\u00e2nsal Planlar Y\u00f6n.', renk:'var(--amber)' },
-      { tarih:'14 Nis 2025', tip:'MID JURY 2', label:'1/5000 Uygulama Plan\u0131', detay:'1/5000 uygulama plan\u0131. DOP hesab\u0131, plan notlar\u0131, sosyal altyap\u0131 standard\u0131.', yasalar:'3194/m.18 \u00b7 Planl\u0131 Alanlar Y\u00f6n. \u00b7 6360', renk:'var(--amber)' },
-      { tarih:'24 Nis 2025', tip:'M\u0130DTERM', label:'Bireysel S\u0131nav (%15)', detay:'T\u00fcm lecture konular\u0131 ve mevzuat dahil yaz\u0131l\u0131 s\u0131nav.', yasalar:'T\u00fcm mevzuat', renk:'var(--red)' },
-      { tarih:'12 May 2025', tip:'MID JURY 3 Ön', label:'1/1000 \u00d6n Sunum (%25)', detay:'1/1000 plan\u0131n\u0131n \u00f6n sunumu. TAKS, KAKS, Hmax, yap\u0131 nizami, plan notlar\u0131.', yasalar:'Planl\u0131 Alanlar \u0130mar Y\u00f6n. \u00b7 3194/m.8', renk:'var(--amber)' },
-      { tarih:'22 May 2025', tip:'Teslim', label:'1/500 Kent Tasar\u0131m\u0131 Taslaklar\u0131', detay:'1/500 \u00f6l\u00e7e\u011finde kentsel tasar\u0131m pafta taslaklar\u0131 teslim.', yasalar:'Site Planning (Lynch & Hack) \u00b7 Lecture 7', renk:'var(--green)' },
-      { tarih:'2 Haz 2025', tip:'MID JURY 3', label:'1/1000 Final + 1/500 \u00d6n (%50+%25)', detay:'1/1000 plan\u0131 finali ve 1/500 kentsel tasar\u0131m \u00f6n pafta.', yasalar:'T\u00fcm planlama mevzuat\u0131', renk:'var(--amber)' },
-      { tarih:'19\u201322 Haz', tip:'F\u0130NAL JURY', label:'Final J\u00fcrisі', detay:'Stratejik + Uygulama + Kentsel Tasar\u0131m b\u00fct\u00fcnle\u015fik sunum.', yasalar:'T\u00fcm mevzuat + okuma listesi', renk:'var(--green)' }
+      { tarih:'Hafta 01', tip:'Ba\u015flang\u0131\u00e7', label:'Ders Ba\u015flang\u0131c\u0131', detay:'Grup olu\u015fturma. Ara\u015ft\u0131rma Raporu ve 1/5000 Stratejik Plan ba\u015flat\u0131ld\u0131.', yasalar:'3194, 6360, 5216', renk:'var(--blue)' },
+      { tarih:'Hafta 05', tip:'MID JURY 1', label:'1/5000 Stratejik Plan', detay:'Stratejik planlar paydalar ile sunulur. SWOT analizi, vizyon, arazi kullan\u0131m kararlar\u0131.', yasalar:'3194/m.8 \u00b7 5216/m.7 \u00b7 Mek\u00e2nsal Planlar Y\u00f6n.', renk:'var(--amber)' },
+      { tarih:'Hafta 08', tip:'MID JURY 2', label:'1/5000 Uygulama Plan\u0131', detay:'1/5000 uygulama plan\u0131. DOP hesab\u0131, plan notlar\u0131, sosyal altyap\u0131 standard\u0131.', yasalar:'3194/m.18 \u00b7 Planl\u0131 Alanlar Y\u00f6n. \u00b7 6360', renk:'var(--amber)' },
+      { tarih:'Ara Değerlendirme', tip:'M\u0130DTERM', label:'Bireysel S\u0131nav (%15)', detay:'T\u00fcm lecture konular\u0131 ve mevzuat dahil yaz\u0131l\u0131 s\u0131nav.', yasalar:'T\u00fcm mevzuat', renk:'var(--red)' },
+      { tarih:'Hafta 12', tip:'MID JURY 3 Ön', label:'1/1000 \u00d6n Sunum (%25)', detay:'1/1000 plan\u0131n\u0131n \u00f6n sunumu. TAKS, KAKS, Hmax, yap\u0131 nizami, plan notlar\u0131.', yasalar:'Planl\u0131 Alanlar \u0130mar Y\u00f6n. \u00b7 3194/m.8', renk:'var(--amber)' },
+      { tarih:'Hafta 14', tip:'Teslim', label:'1/500 Kent Tasar\u0131m\u0131 Taslaklar\u0131', detay:'1/500 \u00f6l\u00e7e\u011finde kentsel tasar\u0131m pafta taslaklar\u0131 teslim.', yasalar:'Site Planning (Lynch & Hack) \u00b7 Lecture 7', renk:'var(--green)' },
+      { tarih:'Hafta 16', tip:'MID JURY 3', label:'1/1000 Final + 1/500 \u00d6n (%50+%25)', detay:'1/1000 plan\u0131 finali ve 1/500 kentsel tasar\u0131m \u00f6n pafta.', yasalar:'T\u00fcm planlama mevzuat\u0131', renk:'var(--amber)' },
+      { tarih:'Final Haftası', tip:'F\u0130NAL JURY', label:'Final J\u00fcrisі', detay:'Stratejik + Uygulama + Kentsel Tasar\u0131m b\u00fct\u00fcnle\u015fik sunum.', yasalar:'T\u00fcm mevzuat + okuma listesi', renk:'var(--green)' }
     ];
     var th = '<div class="card card-info" style="margin-bottom:14px"><div class="card-title">J\u00fcri \u2014 Plan Tipi \u2014 Mevzuat Ba\u011flant\u0131s\u0131</div><p style="font-size:12.5px;color:var(--text-muted)">Her j\u00fcri farkl\u0131 bir plan \u00f6l\u00e7e\u011fi gerektirir.</p></div><div style="display:flex;flex-direction:column;gap:2px">';
     milestones.forEach(function(m) {
@@ -3316,5 +3319,6 @@ document.getElementById('gridToggleBtn').addEventListener('click', function() {
   this.style.color = document.getElementById('gridOverlay').classList.contains('visible') ? 'var(--red)' : '';
 });
 </script>
+<script src="assets/js/enhancements.js" defer></script>
 </body>
 </html>
