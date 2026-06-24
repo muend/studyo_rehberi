@@ -1,0 +1,58 @@
+name: Apply CP302 atlas upgrade
+on:
+  push:
+    branches: [codex/studyo-atlasi-yukseltme]
+permissions:
+  contents: write
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/studyo-atlasi-yukseltme
+      - name: Apply upgrade safely
+        shell: python
+        run: |
+          from pathlib import Path
+          import base64, shutil
+
+          index = Path('index.html')
+          text = index.read_text(encoding='utf-8-sig')
+          text = text.replace('<title>CP302 — Kapsamlı Öğrenme Rehberi</title>', '<title>CP302 — Kaş Planlama Stüdyosu Atlası</title>\n<meta name="description" content="Kaş ve Bayındır için mevzuat, kuram, analitik araçlar ve kişisel çalışma özelliklerini birleştiren interaktif CP302 stüdyo rehberi.">\n<meta name="theme-color" content="#1a1a1a">')
+          if 'assets/css/enhancements.css' not in text:
+              text = text.replace('</head>', '<link rel="stylesheet" href="assets/css/enhancements.css">\n</head>')
+          if 'assets/js/enhancements.js' not in text:
+              text = text.replace('</body>', '<script src="assets/js/enhancements.js" defer></script>\n</body>')
+          replacements = {
+              '24 \\u015eub 2025': 'Hafta 01',
+              '24 Mar 2025': 'Hafta 05',
+              '14 Nis 2025': 'Hafta 08',
+              '24 Nis 2025': 'Ara Değerlendirme',
+              '12 May 2025': 'Hafta 12',
+              '22 May 2025': 'Hafta 14',
+              '2 Haz 2025': 'Hafta 16',
+              '19\\u201322 Haz': 'Final Haftası',
+              "label:'Ka\\u015f Proje Takvimi \\u2014 Hangi J\\u00fcride Ne Teslim Edilir?'": "label:'Stüdyo Akışı \\u2014 Hangi Aşamada Ne Teslim Edilir?'",
+          }
+          for old, new in replacements.items():
+              text = text.replace(old, new)
+          index.write_text(text, encoding='utf-8')
+
+          image_dir = Path('assets/images')
+          image_dir.mkdir(parents=True, exist_ok=True)
+          image_dir.joinpath('kas-planning-atlas.webp').write_bytes(base64.b64decode(Path('.image-parts/atlas.b64').read_text().strip()))
+
+          for path in [Path('generate_pdf.py'), Path('generate_presentation.py')]:
+              if path.exists(): path.unlink()
+          shutil.rmtree('presentation_output', ignore_errors=True)
+          shutil.rmtree('.image-parts', ignore_errors=True)
+          Path('.github/workflows/apply-atlas-upgrade.yml').unlink(missing_ok=True)
+      - name: Commit completed upgrade
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Complete CP302 interactive planning atlas upgrade"
+          git push
